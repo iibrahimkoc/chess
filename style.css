@@ -1,0 +1,62 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html{
+	font-size: 10px;
+}
+body{
+	padding: 3rem;
+}
+.table{
+	width: 40rem;
+	height: 40rem;
+	
+}
+.yesil{
+	width: 5rem;
+	height: 5rem;
+	background-color: #779954;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3rem;
+}
+.beyaz{
+	width: 5rem;
+	height: 5rem;
+	background-color: #E9EDCC;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3rem;
+}
+.table-1 div,
+.table-2 div,
+.table-3 div,
+.table-4 div,
+.table-5 div,
+.table-6 div,
+.table-7 div,
+.table-8 div{
+	float: left;
+}
+.blackPawn,
+.blackRook,
+.blackKnight,
+.blackBishop,
+.blackQueen,
+.blackKing{
+	color:#000000;
+}
+.whitePawn,
+.whiteRook,
+.whiteKnight,
+.whiteBishop,
+.whiteQueen,
+.whiteKing{
+	color:#F8F8F8;
+}
+
+
