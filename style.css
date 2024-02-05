@@ -3,34 +3,58 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+:root{
+	--font: 'Itim', cursive;
+}
 html{
 	font-size: 10px;
 }
 body{
-	padding: 3rem;
+	width: 100%;
+	height: 100vh;
+	background-color: #96b07b;
+	padding: 2.5rem 3rem 2.5rem 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
+#start{
+	width: 15rem;
+	height: 6rem;
+	background-color: white;
+	border-radius: 5rem;
+	box-shadow: 2px 2px 2px #000000;
+	font-size: 3rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .table{
-	width: 40rem;
-	height: 40rem;
-	
+	display: none;
+	width: 64rem;
+	height: 64rem;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .yesil{
-	width: 5rem;
-	height: 5rem;
+	width: 8rem;
+	height: 8rem;
 	background-color: #779954;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 3rem;
+	font-size: 4.8rem;
 }
 .beyaz{
-	width: 5rem;
-	height: 5rem;
+	width: 8rem;
+	height: 8rem;
 	background-color: #E9EDCC;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 3rem;
+	font-size: 4.8rem;
 }
 .table-1 div,
 .table-2 div,
