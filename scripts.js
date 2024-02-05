@@ -1,3 +1,18 @@
+// CİHAZIN WİDTH DEĞERİNİ ALDIK
+var screenWidth = document.getElementById("body").clientWidth;
+screenWidth -= 20;
+
+blockWidth = screenWidth / 8;
+console.log("screenWidth:", screenWidth);
+console.log("blockWidth:", blockWidth);
+var style = document.createElement('style');
+style.type = 'text/css';
+document.head.appendChild(style);
+style.innerHTML = '@media screen and (max-width: 500px) {.table{ width: ' + screenWidth + 'px; height: ' + screenWidth +'px;}.yesil{width: ' + blockWidth +'px;height: ' + blockWidth +'px;font-size: '+ (blockWidth*0.6) +'px;}.beyaz{width: ' + blockWidth +'px;height: ' +blockWidth +'px;font-size: '+ (blockWidth*0.6) + 'px;}}'
+
+
+
+
 
 
 function start() {
@@ -241,21 +256,21 @@ function tasHareket(tasTuru) {
                 hedefKonumToChar = parseInt(hedefKonum[0].charCodeAt(0)) - 64;
             }
             console.log(1)
-            if(renk = "white"){
-                if((hedefKonumToChar - oynanacakTasKonumToChar == -1) && (((hedefKonum[1]-oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1]-oynanacakTasKonum[1]) <= 1))){
+            if (renk = "white") {
+                if ((hedefKonumToChar - oynanacakTasKonumToChar == -1) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
                     document.getElementById(oynanacakTasKonum).innerHTML = "";
                 }
-                else if((hedefKonumToChar == oynanacakTasKonumToChar) && (((hedefKonum[1]-oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1]-oynanacakTasKonum[1]) <= 1))){
+                else if ((hedefKonumToChar == oynanacakTasKonumToChar) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
                     document.getElementById(oynanacakTasKonum).innerHTML = "";
                 }
-                else if((hedefKonumToChar - oynanacakTasKonumToChar == 1) && (((hedefKonum[1]-oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1]-oynanacakTasKonum[1]) <= 1))){
+                else if ((hedefKonumToChar - oynanacakTasKonumToChar == 1) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
                     document.getElementById(oynanacakTasKonum).innerHTML = "";
                 }
             }
-            else if(renk = "black"){
+            else if (renk = "black") {
 
             }
             break;
