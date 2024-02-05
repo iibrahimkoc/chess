@@ -84,3 +84,19 @@ body{
 }
 
 
+@media screen and (max-width: 500px) {	
+	.table{
+		width: 32rem;
+		height: 32rem;
+	}
+	.yesil{
+		width: 4rem;
+		height: 4rem;
+		font-size: 2.4rem;
+	}
+	.beyaz{
+		width: 4rem;
+		height: 4rem;
+		font-size: 2.4rem;
+	}
+}
