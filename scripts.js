@@ -1,6 +1,5 @@
 // CİHAZIN WİDTH DEĞERİNİ ALDIK
 var screenWidth = document.getElementById("body").clientWidth;
-screenWidth -= 20;
 
 blockWidth = screenWidth / 8;
 console.log("screenWidth:", screenWidth);
@@ -8,7 +7,7 @@ console.log("blockWidth:", blockWidth);
 var style = document.createElement('style');
 style.type = 'text/css';
 document.head.appendChild(style);
-style.innerHTML = '@media screen and (max-width: 500px) {.table{ width: ' + screenWidth + 'px; height: ' + screenWidth +'px;}.yesil{width: ' + blockWidth +'px;height: ' + blockWidth +'px;font-size: '+ (blockWidth*0.6) +'px;}.beyaz{width: ' + blockWidth +'px;height: ' +blockWidth +'px;font-size: '+ (blockWidth*0.6) + 'px;}}'
+style.innerHTML = '@media screen and (max-width: 500px) {.table{ width: ' + screenWidth + 'px; height: ' + screenWidth +'px;}.yesil{width: ' + blockWidth +'px;height: ' + blockWidth +'px;font-size: '+ (blockWidth*0.75) +'px;}.beyaz{width: ' + blockWidth +'px;height: ' +blockWidth +'px;font-size: '+ (blockWidth*0.75) + 'px;}}'
 
 
 
