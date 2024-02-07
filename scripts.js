@@ -17,7 +17,7 @@ var hamleSesi = new Audio("hamle.mp3");
 //----------SAYAC----------
 
 
-let sayac = new Date(0,0,0);
+let sayac = new Date(0, 0, 0);
 sayac.setFullYear(0);
 
 sayac.setMinutes(45);
@@ -91,41 +91,71 @@ function tasHareket(tasTuru) {
                 if (oynanacakTasKonum[1] == 2) {
                     if ((((hedefKonum[1] - oynanacakTasKonum[1]) == 2) || (hedefKonum[1] - oynanacakTasKonum[1] == 1)) && (hedefKonum[0] == oynanacakTasKonum[0])) {
                         //koda önündeki taş var mı kontol mekanizması ekle
-                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        document.getElementById(oynanacakTasKonum).innerHTML = "";
-                        hamleSayisi++;
-                        console.log(hamleSayisi);
-                        oynanacakTas = "";
-                        hamleSesi.play();
+
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+
+                        if (musaitlik !== "bosDegil") {
+                            document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                            document.getElementById(oynanacakTasKonum).innerHTML = "";
+                            hamleSayisi++;
+                            console.log(hamleSayisi);
+                            oynanacakTas = "";
+                            hamleSesi.play();
+                        }
                     }
                 }
                 else {
                     if (((hedefKonum[1] - oynanacakTasKonum[1]) == 1) && (hedefKonum[0] == oynanacakTasKonum[0])) {
-                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        document.getElementById(oynanacakTasKonum).innerHTML = "";
-                        hamleSayisi++;
-                        console.log(hamleSayisi);
-                        hamleSesi.play();
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                        if (musaitlik !== "bosDegil") {
+                            document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                            document.getElementById(oynanacakTasKonum).innerHTML = "";
+                            hamleSayisi++;
+                            console.log(hamleSayisi);
+                            hamleSesi.play();
+                        }
                     }
                 }
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
                 if (oynanacakTasKonum[1] == 7) {
                     if (((hedefKonum[1] - oynanacakTasKonum[1] == -2) || (hedefKonum[1] - oynanacakTasKonum[1] == -1)) && (hedefKonum[0] == oynanacakTasKonum[0])) {
-                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        document.getElementById(oynanacakTasKonum).innerHTML = "";
-                        hamleSayisi++;
-                        console.log(hamleSayisi);
-                        hamleSesi.play();
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                        if (musaitlik !== "bosDegil") {
+                            document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                            document.getElementById(oynanacakTasKonum).innerHTML = "";
+                            hamleSayisi++;
+                            console.log(hamleSayisi);
+                            hamleSesi.play();
+                        }
                     }
                 }
                 else {
                     if ((hedefKonum[1] - oynanacakTasKonum[1] == -1) && (hedefKonum[0] == oynanacakTasKonum[0])) {
-                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        document.getElementById(oynanacakTasKonum).innerHTML = "";
-                        hamleSayisi++;
-                        console.log(hamleSayisi);
-                        hamleSesi.play();
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                        if (musaitlik !== "bosDegil") {
+                            document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                            document.getElementById(oynanacakTasKonum).innerHTML = "";
+                            hamleSayisi++;
+                            console.log(hamleSayisi);
+                            hamleSesi.play();
+                        }
                     }
                 }
             }
@@ -133,36 +163,105 @@ function tasHareket(tasTuru) {
             break;
         case 'rook':
             if ((renk == "white") && (hamleSayisi % 2 == 0)) {
-                if (hedefKonum[0] == oynanacakTasKonum[0]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                if (hedefKonum[0] == oynanacakTasKonum[0]) { //AYNI SÜTÜNDA HAREKET
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {//YUKARI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//AŞAĞI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
+
                 }
-                else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) { //AYNI SATIRDA HAREKET
+                    if (oynanacakTasKonum[0].charCodeAt(0) < hedefKonum[0].charCodeAt(0)) { // sağı kontol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= (hedefKonum[0].charCodeAt(0) - 64); i++) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//solu kontrol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= (hedefKonum[0].charCodeAt(0) - 64); i--) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 //console.log(Number(oynanacakTasKonum[0].charCodeAt(0)) - 64)
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
-                if (hedefKonum[0] == oynanacakTasKonum[0]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                if (hedefKonum[0] == oynanacakTasKonum[0]) { //AYNI SÜTUN
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {//YUKARI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//AŞAĞI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    if (oynanacakTasKonum[0].charCodeAt(0) < hedefKonum[0].charCodeAt(0)) { // sağı kontol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= (hedefKonum[0].charCodeAt(0) - 64); i++) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//solu kontrol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= (hedefKonum[0].charCodeAt(0) - 64); i--) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
             }
             break;
@@ -183,6 +282,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == 1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -205,7 +305,6 @@ function tasHareket(tasTuru) {
                     console.log(hamleSayisi);
                     hamleSesi.play();
                 }
-
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
                 if ((oynanacakTasKonumToChar - hedefKonumToChar == 2) && ((oynanacakTasKonum[1] - hedefKonum[1] == -1) || (oynanacakTasKonum[1] - hedefKonum[1] == +1))) {
@@ -221,6 +320,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == -1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -244,35 +344,109 @@ function tasHareket(tasTuru) {
                 hedefKonumToChar = parseInt(hedefKonum[0].charCodeAt(0)) - 64;
             }
             if ((renk == "white") && (hamleSayisi % 2 == 0)) {
+                //SOL ALTTAN SAĞ ÜSTE ve tersi tarafa DOĞRU GİDEN
                 if ((oynanacakTasKonumToChar - oynanacakTasKonum[1]) == (hedefKonumToChar - hedefKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SOL ALTTAN SAĞ ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SAĞ ÜSTTEN SOL ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= hedefKonum[1]; i--, j--) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SAĞ ALLTAN SOL ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SOL ÜSTTEN SAĞ ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i >= hedefKonum[1]; i--, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
                 if ((oynanacakTasKonumToChar - oynanacakTasKonum[1]) == (hedefKonumToChar - hedefKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SOL ALTTAN SAĞ ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SAĞ ÜSTTEN SOL ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= hedefKonum[1]; i--, j--) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SAĞ ALLTAN SOL ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SOL ÜSTTEN SAĞ ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i >= hedefKonum[1]; i--, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
             }
             break;
@@ -282,65 +456,209 @@ function tasHareket(tasTuru) {
                 hedefKonumToChar = parseInt(hedefKonum[0].charCodeAt(0)) - 64;
             }
             if ((renk == "white") && (hamleSayisi % 2 == 0)) {
+                //KALE BENZERİ HAREKET
                 if (hedefKonum[0] == oynanacakTasKonum[0]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {//YUKARI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//AŞAĞI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
+
                 }
+
                 else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    if (oynanacakTasKonum[0].charCodeAt(0) < hedefKonum[0].charCodeAt(0)) { // sağı kontol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= (hedefKonum[0].charCodeAt(0) - 64); i++) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//solu kontrol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= (hedefKonum[0].charCodeAt(0) - 64); i--) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
+
+                // FİL BENZERİ HAREKET
                 else if ((oynanacakTasKonumToChar - oynanacakTasKonum[1]) == (hedefKonumToChar - hedefKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SOL ALTTAN SAĞ ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SAĞ ÜSTTEN SOL ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= hedefKonum[1]; i--, j--) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
 
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SAĞ ALLTAN SOL ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SOL ÜSTTEN SAĞ ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i >= hedefKonum[1]; i--, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
-                if (hedefKonum[0] == oynanacakTasKonum[0]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                if (hedefKonum[0] == oynanacakTasKonum[0]) { //AYNI SÜTUN
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {//YUKARI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = ++oynanacakTasKonum[1]; i <= hedefKonum[1]; i++) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//AŞAĞI YÖNDE HAREKETİ KONTROL ET
+                        for (var i = (oynanacakTasKonum[1] - 1); i >= hedefKonum[1]; i--) {
+                            if (document.getElementById(oynanacakTasKonum[0] + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
-                }
-                else if ((oynanacakTasKonumToChar - oynanacakTasKonum[1]) == (hedefKonumToChar - hedefKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    if (oynanacakTasKonum[0].charCodeAt(0) < hedefKonum[0].charCodeAt(0)) { // sağı kontol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= (hedefKonum[0].charCodeAt(0) - 64); i++) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else {//solu kontrol et
+                        for (var i = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= (hedefKonum[0].charCodeAt(0) - 64); i--) {
+                            if (document.getElementById(String.fromCharCode(i + 64) + oynanacakTasKonum[1]).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
 
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
+                }
+                // FİL BENZERİ HAREKET
+
+                //SOL ALTTAN SAĞ ÜSTE ve tersi tarafa DOĞRU GİDEN
+                if ((oynanacakTasKonumToChar - oynanacakTasKonum[1]) == (hedefKonumToChar - hedefKonum[1])) {
+                    //SOL ALTTAN SAĞ ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SAĞ ÜSTTEN SOL ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i >= hedefKonum[1]; i--, j--) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
-                    document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                    document.getElementById(oynanacakTasKonum).innerHTML = "";
-                    hamleSayisi++;
-                    console.log(hamleSayisi);
-                    hamleSesi.play();
+                    //SAĞ ALLTAN SOL ÜSTE
+                    if (oynanacakTasKonum[1] < hedefKonum[1]) {
+                        for (var i = ++oynanacakTasKonum[1], j = (oynanacakTasKonum[0].charCodeAt(0) - 65); i <= hedefKonum[1]; i++, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+                    else { //SOL ÜSTTEN SAĞ ALTA
+                        for (var i = (oynanacakTasKonum[1] - 1), j = (oynanacakTasKonum[0].charCodeAt(0) - 63); i >= hedefKonum[1]; i--, j++) {
+                            if (document.getElementById(String.fromCharCode(j + 64) + i).innerHTML !== "") {
+                                var musaitlik = "bosDegil";
+                            }
+                        }
+                    }
+
+                    if (musaitlik !== "bosDegil") {
+                        document.getElementById(hedefKonum).innerHTML = oynanacakTas;
+                        document.getElementById(oynanacakTasKonum).innerHTML = "";
+                        hamleSayisi++;
+                        console.log(hamleSayisi);
+                        hamleSesi.play();
+                    }
                 }
             }
             break;
