@@ -82,4 +82,28 @@ body{
 	color:#b4b4b4;
 }
 
+#whiteUpdatePawn,
+#blackUpdatePawn{
+	position: absolute;
+	display: none;
+}
+#whiteUpdatePawn div,
+#blackUpdatePawn div{
+	width: 8rem;
+	height: 8rem;
+	font-size: 4.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid grey;
+	background-color: rgb(245, 230, 202);
+}
+#whiteUpdatePawn div:nth-child(1),
+#blackUpdatePawn div:nth-child(1){
+	border-radius: 1rem 0 0 1rem;
+}
 
+#whiteUpdatePawn div:nth-last-child(1),
+#blackUpdatePawn div:nth-last-child(1){
+	border-radius: 0 1rem 1rem 0;
+}
