@@ -26,6 +26,8 @@ console.log(sayac);
 function start() {
     document.getElementById("start").style.display = "none";
     document.getElementById("table").style.display = "block";
+    document.getElementById("player-1").style.display = "flex";
+    document.getElementById("player-2").style.display = "flex";
 }
 
 var hamleSayisi = 0;

@@ -14,6 +14,7 @@ body{
 	height: 100vh;
 	background-color: #96b07b;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -106,4 +107,79 @@ body{
 #whiteUpdatePawn div:nth-last-child(1),
 #blackUpdatePawn div:nth-last-child(1){
 	border-radius: 0 1rem 1rem 0;
+}
+
+#player-2{
+	width: 64rem;
+	height: 4rem;
+	margin: 1rem 0 1rem 0;
+	background-color: aqua;
+	display: none;
+	position: relative;
+}
+.player-2-ID{
+	width: 15rem;
+	height: 100%;
+	background-color: #d6a232;
+	float: left;
+	font-size: 2rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.player-2-pieces{
+	width: 5rem;
+	height: 100%;
+	background-color: #85aa00;
+	float: left;
+}
+.player-2-time{
+	width: 10rem;
+	height: 100%;
+	background-color: #b4b4b4;
+	position: absolute;
+	right: 0;
+	font-size: 3rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#player-1{
+	width: 64rem;
+	height: 4rem;
+	margin: 1rem 0 1rem 0;
+	background-color: aqua;
+	display: none;
+	position: relative;
+}
+.player-1-ID{
+	width: 15rem;
+	height: 100%;
+	background-color: #d6a232;
+	float: left;
+	font-size: 2rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.player-1-pieces{
+	width: 5rem;
+	height: 100%;
+	background-color: #85aa00;
+	float: left;
+}
+.player-1-time{
+	width: 10rem;
+	height: 100%;
+	background-color: #b4b4b4;
+	position: absolute;
+	right: 0;
+	font-size: 3rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
