@@ -1,28 +1,79 @@
 // CİHAZIN WİDTH DEĞERİNİ ALDIK
-var screenWidth = document.getElementById("body").clientWidth;
-screenWidth -= 10;
+function ekranBoyutu() {
+    var screenWidth = document.getElementById("body").clientWidth;
+    screenWidth -= 10;
 
-blockWidth = screenWidth / 8;
-console.log("screenWidth:", screenWidth);
-console.log("blockWidth:", blockWidth);
-var style = document.createElement('style');
-style.type = 'text/css';
-document.head.appendChild(style);
-style.innerHTML = '@media screen and (max-width: 640px) {.table{ width: ' + screenWidth + 'px; height: ' + screenWidth + 'px;}.yesil{width: ' + blockWidth + 'px;height: ' + blockWidth + 'px;font-size: ' + (blockWidth * 0.7) + 'px;}.beyaz{width: ' + blockWidth + 'px;height: ' + blockWidth + 'px;font-size: ' + (blockWidth * 0.7) + 'px;}}'
+    blockWidth = screenWidth / 8;
+    console.log("screenWidth:", screenWidth);
+    console.log("blockWidth:", blockWidth);
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    document.head.appendChild(style);
+    style.innerHTML = '@media screen and (max-width: 640px) {.table{ width: ' + screenWidth + 'px; height: ' + screenWidth + 'px;}.yesil{width: ' + blockWidth + 'px;height: ' + blockWidth + 'px;font-size: ' + (blockWidth * 0.7) + 'px;}.beyaz{width: ' + blockWidth + 'px;height: ' + blockWidth + 'px;font-size: ' + (blockWidth * 0.7) + 'px;}}'
+
+}
+
+ekranBoyutu();
+setInterval(ekranBoyutu, 1000); //sayfa boyutunu sürekli güncellemek için
 
 
 var hamleSesi = new Audio("hamle.mp3");
 
 //----------SAYAC----------
 
+var timeResult = document.getElementById("player-1-time").textContent;
+var minute = parseInt(timeResult[0] + timeResult[1]);
+var second = parseInt(timeResult[3] + timeResult[4]);
+var minuteText = "";
+var secondText = "";
+var eksik = -1;
+var i = 0;
 
-let sayac = new Date(0, 0, 0);
-sayac.setFullYear(0);
+function sayac() {
+    if (second == 0) {
+        minute -= 1;
+        second = 59;
+    }
 
-sayac.setMinutes(45);
-console.log(sayac);
+    if (minute < 10) {
+        minuteText = "0"
+    } else {
+        minuteText = "";
+    }
+
+    if (second < 10 && second > -1) {
+        secondText = "0";
+    } else {
+        secondText = "";
+    }
+
+    if (second == 1 && minute == 0) {
+        timeResult = "00:00";
+        eksik = 0
+    }
+    else {
+        timeResult = minuteText + minute + ":" + secondText + second;
+    }
+    second += eksik;
+
+    document.getElementById("player-" + ((i % 2) + 1) + "-time").textContent = timeResult;
+}
+
+sayac();
+setInterval(sayac, 1000);
+
+function hamleOynandi() {
+    i += 1;
+    console.log(i);
+    result = document.getElementById("player-" + ((i % 2) + 1) + "-time").textContent;
+    minute = parseInt(result[0] + result[1]);
+    second = parseInt(result[3] + result[4]);
+}
 
 
+
+
+//-----------START--------------
 function start() {
     document.getElementById("start").style.display = "none";
     document.getElementById("table").style.display = "block";
@@ -156,6 +207,7 @@ function tasHareket(tasTuru) {
                             console.log(hamleSayisi);
                             oynanacakTas = "";
                             hamleSesi.play();
+                            hamleOynandi();
                         }
                     }
                     //TAŞ YEME DURUMU İÇİN
@@ -168,6 +220,8 @@ function tasHareket(tasTuru) {
                         console.log(hamleSayisi);
                         oynanacakTas = "";
                         hamleSesi.play();
+                        hamleOynandi();
+
                     }
                     console.log("kod içine girdik-1-5345")
                 }
@@ -185,6 +239,7 @@ function tasHareket(tasTuru) {
                             hamleSayisi++;
                             console.log(hamleSayisi);
                             hamleSesi.play();
+                            hamleOynandi();
                         }
                     }
 
@@ -198,6 +253,7 @@ function tasHareket(tasTuru) {
                         console.log(hamleSayisi);
                         oynanacakTas = "";
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
 
@@ -220,6 +276,7 @@ function tasHareket(tasTuru) {
                             hamleSayisi++;
                             console.log(hamleSayisi);
                             hamleSesi.play();
+                            hamleOynandi();
                         }
                     }
                     //TAŞ YEME DURUMU İÇİN
@@ -232,6 +289,7 @@ function tasHareket(tasTuru) {
                         console.log(hamleSayisi);
                         oynanacakTas = "";
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 else {
@@ -247,6 +305,7 @@ function tasHareket(tasTuru) {
                             hamleSayisi++;
                             console.log(hamleSayisi);
                             hamleSesi.play();
+                            hamleOynandi();
                         }
                     }
                     //TAŞ YEME DURUMU İÇİN
@@ -259,6 +318,7 @@ function tasHareket(tasTuru) {
                         console.log(hamleSayisi);
                         oynanacakTas = "";
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -286,15 +346,16 @@ function tasHareket(tasTuru) {
                             yenilenTas.add = hedefKonum.innerHTML;
                         }*/
                         document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        if(oynanacakTas.includes("left")){
+                        if (oynanacakTas.includes("left")) {
                             beyazSolKaleHareketSayisi++;
                         }
-                        else if(oynanacakTas.includes("right")){
+                        else if (oynanacakTas.includes("right")) {
                             beyazSagKaleHareketSayisi++;
                         }
                         document.getElementById(oynanacakTasKonum).innerHTML = "";
                         hamleSayisi++;
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
 
@@ -319,16 +380,17 @@ function tasHareket(tasTuru) {
                             yenilenTas.add = hedefKonum.innerHTML;
                         }*/
                         document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        if(oynanacakTas.includes("left")){
+                        if (oynanacakTas.includes("left")) {
                             beyazSolKaleHareketSayisi++;
                         }
-                        else if(oynanacakTas.includes("right")){
+                        else if (oynanacakTas.includes("right")) {
                             beyazSagKaleHareketSayisi++;
                         }
                         document.getElementById(oynanacakTasKonum).innerHTML = "";
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
 
 
@@ -353,16 +415,17 @@ function tasHareket(tasTuru) {
 
                     if (musaitlik !== "bosDegil") {
                         document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        if(oynanacakTas.includes("left")){
+                        if (oynanacakTas.includes("left")) {
                             siyahSolKaleHareketSayisi++;
                         }
-                        else if(oynanacakTas.includes("right")){
+                        else if (oynanacakTas.includes("right")) {
                             siyahSagKaleHareketSayisi++;
                         }
                         document.getElementById(oynanacakTasKonum).innerHTML = "";
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) { // AYNI SATIRDA HAREKET
@@ -383,16 +446,17 @@ function tasHareket(tasTuru) {
 
                     if (musaitlik !== "bosDegil") {
                         document.getElementById(hedefKonum).innerHTML = oynanacakTas;
-                        if(oynanacakTas.includes("left")){
+                        if (oynanacakTas.includes("left")) {
                             siyahSolKaleHareketSayisi++;
                         }
-                        else if(oynanacakTas.includes("right")){
+                        else if (oynanacakTas.includes("right")) {
                             siyahSagKaleHareketSayisi++;
                         }
                         document.getElementById(oynanacakTasKonum).innerHTML = "";
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -414,6 +478,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
 
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == 1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
@@ -422,6 +487,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == -1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -429,6 +495,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == -2) && ((oynanacakTasKonum[1] - hedefKonum[1] == -1) || (oynanacakTasKonum[1] - hedefKonum[1] == +1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -436,6 +503,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
@@ -445,6 +513,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == 1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -452,6 +521,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
 
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == -1) && ((oynanacakTasKonum[1] - hedefKonum[1] == -2) || (oynanacakTasKonum[1] - hedefKonum[1] == +2))) {
@@ -460,6 +530,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((oynanacakTasKonumToChar - hedefKonumToChar == -2) && ((oynanacakTasKonum[1] - hedefKonum[1] == -1) || (oynanacakTasKonum[1] - hedefKonum[1] == +1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -467,6 +538,7 @@ function tasHareket(tasTuru) {
                     hamleSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
             }
             break;
@@ -506,6 +578,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
 
 
@@ -539,6 +612,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -571,6 +645,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                     //Mesajımı almıştır o...
                 }
@@ -602,6 +677,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -635,6 +711,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
 
@@ -660,6 +737,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
 
@@ -693,6 +771,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
@@ -723,6 +802,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -750,6 +830,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 else if ((hedefKonum[0] !== oynanacakTasKonum[0]) && hedefKonum[1] == oynanacakTasKonum[1]) {
@@ -774,6 +855,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 // FİL BENZERİ HAREKET
@@ -806,6 +888,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
                 else if (((hedefKonumToChar < oynanacakTasKonumToChar) || (hedefKonumToChar > oynanacakTasKonumToChar)) && (oynanacakTasKonumToChar - hedefKonumToChar) == (hedefKonum[1] - oynanacakTasKonum[1])) {
@@ -837,6 +920,7 @@ function tasHareket(tasTuru) {
                         hamleSayisi++;
                         console.log(hamleSayisi);
                         hamleSesi.play();
+                        hamleOynandi();
                     }
                 }
             }
@@ -854,6 +938,7 @@ function tasHareket(tasTuru) {
                     beyazSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 } // ŞAHIN OLDUĞU SATIR
                 else if ((hedefKonumToChar == oynanacakTasKonumToChar) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -862,6 +947,7 @@ function tasHareket(tasTuru) {
                     beyazSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 } // ŞAHIN BİR ÜST SATIRI
                 else if ((hedefKonumToChar - oynanacakTasKonumToChar == 1) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -870,20 +956,27 @@ function tasHareket(tasTuru) {
                     beyazSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
-                else if((hedefKonum == "C1") && (document.getElementById("A1").innerHTML.includes("left")) && (beyazSolKaleHareketSayisi == 0) && (beyazSahHareketSayisi == 0) && (document.getElementById("B1","C1","D1").innerHTML == "")){
+                else if ((hedefKonum == "C1") && (document.getElementById("A1").innerHTML.includes("left")) && (beyazSolKaleHareketSayisi == 0) && (beyazSahHareketSayisi == 0) && (document.getElementById("B1", "C1", "D1").innerHTML == "")) {
                     document.getElementById("D1").innerHTML = document.getElementById("A1").innerHTML;
                     document.getElementById("A1").innerHTML = "";
                     document.getElementById("C1").innerHTML = document.getElementById("E1").innerHTML;
                     document.getElementById("E1").innerHTML = "";
                     beyazSahHareketSayisi++;
+                    hamleSayisi++;
+                    hamleSesi.play();
+                    hamleOynandi();
                 }
-                else if((hedefKonum == "G1") && (document.getElementById("H1").innerHTML.includes("right")) && (beyazSagKaleHareketSayisi == 0) && (beyazSahHareketSayisi == 0) && (document.getElementById("F1","G1").innerHTML == "")){
+                else if ((hedefKonum == "G1") && (document.getElementById("H1").innerHTML.includes("right")) && (beyazSagKaleHareketSayisi == 0) && (beyazSahHareketSayisi == 0) && (document.getElementById("F1", "G1").innerHTML == "")) {
                     document.getElementById("F1").innerHTML = document.getElementById("H1").innerHTML;
                     document.getElementById("H1").innerHTML = "";
                     document.getElementById("G1").innerHTML = document.getElementById("E1").innerHTML;
                     document.getElementById("E1").innerHTML = "";
                     beyazSahHareketSayisi++;
+                    hamleSayisi++;
+                    hamleSesi.play();
+                    hamleOynandi();
                 }
             }
             else if ((renk == "black") && (hamleSayisi % 2 == 1)) {
@@ -894,6 +987,7 @@ function tasHareket(tasTuru) {
                     siyahSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((hedefKonumToChar == oynanacakTasKonumToChar) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -902,6 +996,7 @@ function tasHareket(tasTuru) {
                     siyahSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
                 else if ((hedefKonumToChar - oynanacakTasKonumToChar == 1) && (((hedefKonum[1] - oynanacakTasKonum[1]) >= -1) && ((hedefKonum[1] - oynanacakTasKonum[1]) <= 1))) {
                     document.getElementById(hedefKonum).innerHTML = oynanacakTas;
@@ -910,20 +1005,27 @@ function tasHareket(tasTuru) {
                     siyahSahHareketSayisi++;
                     console.log(hamleSayisi);
                     hamleSesi.play();
+                    hamleOynandi();
                 }
-                else if((hedefKonum == "C8") && (document.getElementById("A8").innerHTML.includes("left")) && (siyahSolKaleHareketSayisi == 0) && (siyahSahHareketSayisi == 0) && (document.getElementById("B8","C8","D8").innerHTML == "")){
+                else if ((hedefKonum == "C8") && (document.getElementById("A8").innerHTML.includes("left")) && (siyahSolKaleHareketSayisi == 0) && (siyahSahHareketSayisi == 0) && (document.getElementById("B8", "C8", "D8").innerHTML == "")) {
                     document.getElementById("D8").innerHTML = document.getElementById("A8").innerHTML;
                     document.getElementById("A8").innerHTML = "";
                     document.getElementById("C8").innerHTML = document.getElementById("E8").innerHTML;
                     document.getElementById("E8").innerHTML = "";
                     siyahSahHareketSayisi++;
+                    hamleSayisi++;
+                    hamleSesi.play();
+                    hamleOynandi();
                 }
-                else if((hedefKonum == "G8") && (document.getElementById("H8").innerHTML.includes("right")) && (siyahSagKaleHareketSayisi == 0) && (siyahSahHareketSayisi == 0) && (document.getElementById("F8","G8").innerHTML == "")){
+                else if ((hedefKonum == "G8") && (document.getElementById("H8").innerHTML.includes("right")) && (siyahSagKaleHareketSayisi == 0) && (siyahSahHareketSayisi == 0) && (document.getElementById("F8", "G8").innerHTML == "")) {
                     document.getElementById("F8").innerHTML = document.getElementById("H8").innerHTML;
                     document.getElementById("H8").innerHTML = "";
                     document.getElementById("G8").innerHTML = document.getElementById("E8").innerHTML;
                     document.getElementById("E8").innerHTML = "";
                     siyahSahHareketSayisi++;
+                    hamleSayisi++;
+                    hamleSesi.play();
+                    hamleOynandi();
                 }
             }
             break;

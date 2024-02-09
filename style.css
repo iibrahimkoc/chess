@@ -134,7 +134,7 @@ body{
 	background-color: #85aa00;
 	float: left;
 }
-.player-2-time{
+#player-2-time{
 	width: 10rem;
 	height: 100%;
 	background-color: #b4b4b4;
@@ -171,7 +171,7 @@ body{
 	background-color: #85aa00;
 	float: left;
 }
-.player-1-time{
+#player-1-time{
 	width: 10rem;
 	height: 100%;
 	background-color: #b4b4b4;
