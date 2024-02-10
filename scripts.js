@@ -78,7 +78,7 @@ function start() {
 }
 
 
-var gameTime;
+var gameTime = "05:00";
 //------------time--------------------
 function setGameTime(thisTime) {
     switch (thisTime) {
@@ -112,8 +112,33 @@ function setGameTime(thisTime) {
 
 //-----------GAME PROPERTİES--------
 function gameProperties() {
-    document.getElementById("player-1-ID").textContent = document.getElementById("player1Text").value.toUpperCase();
-    document.getElementById("player-2-ID").textContent = document.getElementById("player2Text").value.toUpperCase();
+    var user1 = document.getElementById("player1Text").value.toUpperCase();
+    var user2 = document.getElementById("player2Text").value.toUpperCase();
+    console.log(user1)
+    console.log(user2)
+    if(user1 == "" && user2 == ""){
+        document.getElementById("username-1-required").style.display = "block";
+        document.getElementById("username-2-required").style.display = "block";
+        return;
+    }
+    else if(user1 == ""){
+        document.getElementById("username-1-required").style.display = "block";
+        document.getElementById("username-2-required").style.display = "none";
+        return;
+    }
+    else if(user2 == ""){
+        document.getElementById("username-2-required").style.display = "block";
+        document.getElementById("username-1-required").style.display = "none";
+        return;
+    }
+    else{
+        document.getElementById("username-1-required").style.display = "none";
+        document.getElementById("username-2-required").style.display = "none";
+    }
+
+
+    document.getElementById("player-1-ID").textContent = user1
+    document.getElementById("player-2-ID").textContent = user2
     document.getElementById("player-1-time").textContent = gameTime;
     document.getElementById("player-2-time").textContent = gameTime;
     timeResult = gameTime;

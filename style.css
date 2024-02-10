@@ -51,14 +51,14 @@ body{
 	justify-content: center;
 	font-family: var(--font);
 	font-size: 3.5rem;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 	color: #ffffff;
 	text-shadow: 4px 4px 8px #000000;
 	
 }
 .times{
 	width: 100%;
-	height: 14.5rem;
+	height: 12rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -73,10 +73,15 @@ body{
 	color: white;
 }
 
+.times button:nth-child(3){
+	background-color: white;
+	color:black;
+}
+
 .playerText{
 	width: 100%;
 	height: auto;
-	margin: 3rem;
+	margin: 1rem 0 3rem 0;
 	display: flex;
 	justify-content: space-between;
 	font-size: 2rem;
@@ -98,6 +103,15 @@ body{
 .playerText input::placeholder{
 	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	font-size: 1.5rem;
+}
+#username-1-required,
+#username-2-required{
+	display: none;
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 1.16rem;
+	text-shadow: none;
+	letter-spacing: normal;
+	margin-top: 0.3rem;
 }
 
 button[onclick="gameProperties()"]{
