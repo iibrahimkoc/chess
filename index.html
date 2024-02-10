@@ -20,10 +20,38 @@
 
 <body id="body">
 
+	<!--START PAGE-->
 	<div id="start" onclick="start()">START</div>
 
+
+	<!--OYUN TÜR ÖZELLİKLERİ SEÇİM SAYFASI-->
+	<div id="gameProperties">
+		<div class="times">
+			<h1 class="header">Times</h1>
+			<button id="time-1" onclick="setGameTime(1)">1</button>
+			<button id="time-2" onclick="setGameTime(2)">3</button>
+			<button id="time-3" onclick="setGameTime(3)">5</button>
+			<button id="time-4" onclick="setGameTime(4)">10</button>
+			<button id="time-5" onclick="setGameTime(5)">15</button>
+			<button id="time-6" onclick="setGameTime(6)">30</button>
+		</div>
+
+		<div class="playerText">
+			<div>
+				<h4>Player-1</h4>
+				<input id="player1Text" type="text" maxlength="15" autocomplete="off" placeholder="Username">
+			</div>
+			<div>
+				<h4>Player-2</h4>
+				<input id="player2Text" type="text" maxlength="15" autocomplete="off" placeholder="Username">
+			</div>
+		</div>
+		<button onclick="gameProperties()">Start</button>
+	</div>
+
+
 	<div id="player-2">
-		<div class="player-2-ID">ART3MIS</div>
+		<div id="player-2-ID">ART3MIS</div>
 		<div class="player-2-pieces"></div>
 		<div id="player-2-time">10:00</div>
 	</div>
@@ -111,22 +139,22 @@
 		</div>
 	</div>
 	<div id="player-1">
-		<div class="player-1-ID">IIBRAHIMKOC</div>
+		<div id="player-1-ID"></div>
 		<div class="player-1-pieces"></div>
 		<div id="player-1-time">10:00</div>
 	</div>
 
 	<div id="whiteUpdatePawn">
-		<div onclick="whiteUpdatePawn('rook')" ><i class="whiteRook fa-solid fa-chess-rook"></i></div>
-		<div onclick="whiteUpdatePawn('knight')" ><i class="whiteKnight fa-solid fa-chess-knight"></i></div>
-		<div onclick="whiteUpdatePawn('bishop')" ><i class="whiteBishop fa-solid fa-chess-bishop"></i></div>
-		<div onclick="whiteUpdatePawn('queen')" ><i class="whiteQueen fa-solid fa-chess-queen"></i></div>
+		<div onclick="whiteUpdatePawn('rook')"><i class="whiteRook fa-solid fa-chess-rook"></i></div>
+		<div onclick="whiteUpdatePawn('knight')"><i class="whiteKnight fa-solid fa-chess-knight"></i></div>
+		<div onclick="whiteUpdatePawn('bishop')"><i class="whiteBishop fa-solid fa-chess-bishop"></i></div>
+		<div onclick="whiteUpdatePawn('queen')"><i class="whiteQueen fa-solid fa-chess-queen"></i></div>
 	</div>
 	<div id="blackUpdatePawn">
-		<div onclick="blackUpdatePawn('rook')" ><i class="blackRook fa-solid fa-chess-rook"></i></div>
-		<div onclick="blackUpdatePawn('knight')" ><i class="blackKnight fa-solid fa-chess-knight"></i></div>
-		<div onclick="blackUpdatePawn('bishop')" ><i class="blackBishop fa-solid fa-chess-bishop"></i></div>
-		<div onclick="blackUpdatePawn('queen')" ><i class="blackQueen fa-solid fa-chess-queen"></i></div>
+		<div onclick="blackUpdatePawn('rook')"><i class="blackRook fa-solid fa-chess-rook"></i></div>
+		<div onclick="blackUpdatePawn('knight')"><i class="blackKnight fa-solid fa-chess-knight"></i></div>
+		<div onclick="blackUpdatePawn('bishop')"><i class="blackBishop fa-solid fa-chess-bishop"></i></div>
+		<div onclick="blackUpdatePawn('queen')"><i class="blackQueen fa-solid fa-chess-queen"></i></div>
 	</div>
 	<script src="scripts.js"></script>
 </body>

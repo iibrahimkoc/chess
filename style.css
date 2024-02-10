@@ -32,6 +32,89 @@ body{
 	align-items: center;
 }
 
+#gameProperties{
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	width: 50rem;
+	height: 50rem;
+	border: 2px solid #85aa00;
+	border-radius: 2.5rem;
+	background-color:#779954;
+	padding: 7rem;
+}
+
+.header{
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	font-family: var(--font);
+	font-size: 3.5rem;
+	margin-bottom: 1rem;
+	color: #ffffff;
+	text-shadow: 4px 4px 8px #000000;
+	
+}
+.times{
+	width: 100%;
+	height: 14.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	
+}
+.times button{
+	width: 10rem;
+	height: 4rem;
+	font-size: 2rem;
+	border-radius: 1rem;
+	background-color: #5f2f17;
+	color: white;
+}
+
+.playerText{
+	width: 100%;
+	height: auto;
+	margin: 3rem;
+	display: flex;
+	justify-content: space-between;
+	font-size: 2rem;
+	color:white;
+	text-shadow: 2px 2px 5px black;
+	letter-spacing: 0.22rem;
+	font-family: var(--font);
+}
+.playerText input{
+	width: 15rem;
+	height: 3rem;
+	margin-top: 0.5rem;
+	border-radius: 0.5rem;
+	border: none;
+	padding: 0 1rem;
+	font-family: var(--font);
+}
+
+.playerText input::placeholder{
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.5rem;
+}
+
+button[onclick="gameProperties()"]{
+	width: 13rem;
+	height: 5rem;
+	background-color: white;
+	border-radius: 5rem;
+	box-shadow: 2px 2px 2px #000000;
+	font-size: 2.5rem;
+	font-family: var(--font);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+
 .table{
 	display: none;
 	width: 64rem;
@@ -117,7 +200,7 @@ body{
 	display: none;
 	position: relative;
 }
-.player-2-ID{
+#player-2-ID{
 	width: 15rem;
 	height: 100%;
 	background-color: #d6a232;
@@ -154,7 +237,7 @@ body{
 	display: none;
 	position: relative;
 }
-.player-1-ID{
+#player-1-ID{
 	width: 15rem;
 	height: 100%;
 	background-color: #d6a232;

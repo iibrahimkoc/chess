@@ -4,8 +4,6 @@ function ekranBoyutu() {
     screenWidth -= 10;
 
     blockWidth = screenWidth / 8;
-    console.log("screenWidth:", screenWidth);
-    console.log("blockWidth:", blockWidth);
     var style = document.createElement('style');
     style.type = 'text/css';
     document.head.appendChild(style);
@@ -21,9 +19,9 @@ var hamleSesi = new Audio("hamle.mp3");
 
 //----------SAYAC----------
 
-var timeResult = document.getElementById("player-1-time").textContent;
-var minute = parseInt(timeResult[0] + timeResult[1]);
-var second = parseInt(timeResult[3] + timeResult[4]);
+var timeResult;
+var minute;
+var second;
 var minuteText = "";
 var secondText = "";
 var eksik = -1;
@@ -76,10 +74,58 @@ function hamleOynandi() {
 //-----------START--------------
 function start() {
     document.getElementById("start").style.display = "none";
+    document.getElementById("gameProperties").style.display = "flex";
+}
+
+
+var gameTime;
+//------------time--------------------
+function setGameTime(thisTime) {
+    switch (thisTime) {
+        case 1:
+            gameTime = "01:00";
+            break;
+        case 2:
+            gameTime = "03:00";
+            break;
+        case 3:
+            gameTime = "05:00";
+            break;
+        case 4:
+            gameTime = "10:00";
+            break;
+        case 5:
+            gameTime = "15:00";
+            break;
+        case 6:
+            gameTime = "30:00";
+            break;
+    }
+    for(let k = 1; k<=6 ;k++ ){
+        document.getElementById("time-"+k).style.backgroundColor = "#5f2f17";
+        document.getElementById("time-"+k).style.color = "white";
+    }
+    document.getElementById("time-" + thisTime).style.backgroundColor = "white";
+    document.getElementById("time-" + thisTime).style.color = "black";
+
+}
+
+//-----------GAME PROPERTİES--------
+function gameProperties() {
+    document.getElementById("player-1-ID").textContent = document.getElementById("player1Text").value.toUpperCase();
+    document.getElementById("player-2-ID").textContent = document.getElementById("player2Text").value.toUpperCase();
+    document.getElementById("player-1-time").textContent = gameTime;
+    document.getElementById("player-2-time").textContent = gameTime;
+    timeResult = gameTime;
+    minute = parseInt(timeResult[0] + timeResult[1]);
+    second = parseInt(timeResult[3] + timeResult[4]);
+
+    document.getElementById("gameProperties").style.display = "none";
     document.getElementById("table").style.display = "block";
     document.getElementById("player-1").style.display = "flex";
     document.getElementById("player-2").style.display = "flex";
 }
+
 
 var hamleSayisi = 0;
 var tasTuru;
